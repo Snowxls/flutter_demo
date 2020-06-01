@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutterappwechat/pages/chat_page.dart';
-import 'package:flutterappwechat/pages/diccover_page.dart';
+import 'package:flutterappwechat/pages/discover/diccover_page.dart';
 import 'package:flutterappwechat/pages/friends_page.dart';
 import 'package:flutterappwechat/pages/mine_page.dart';
 
@@ -30,19 +30,55 @@ class _RootPageState extends State<RootPage> {
         currentIndex: _currentIndex,
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.chat),
+            icon: Image.asset(
+              'images/tabbar_chat.png',
+              height: 20,
+              width: 20,
+            ),
+            activeIcon: Image.asset(
+              'images/tabbar_chat_hl.png',
+              height: 20,
+              width: 20,
+            ),
             title: Text('微信'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.bookmark),
+            icon: Image.asset(
+              'images/tabbar_friends.png',
+              height: 20,
+              width: 20,
+            ),
+            activeIcon: Image.asset(
+              'images/tabbar_friends_hl.png',
+              height: 20,
+              width: 20,
+            ),
             title: Text('通讯录'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.history),
+            icon: Image.asset(
+              'images/tabbar_discover.png',
+              height: 20,
+              width: 20,
+            ),
+            activeIcon: Image.asset(
+              'images/tabbar_discover_hl.png',
+              height: 20,
+              width: 20,
+            ),
             title: Text('发现'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person_outline),
+            icon: Image.asset(
+              'images/tabbar_mine.png',
+              height: 20,
+              width: 20,
+            ),
+            activeIcon: Image.asset(
+              'images/tabbar_mine_hl.png',
+              height: 20,
+              width: 20,
+            ),
             title: Text('我'),
           ),
         ],
