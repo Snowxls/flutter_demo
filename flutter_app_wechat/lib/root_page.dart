@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutterappwechat/pages/chat_page.dart';
 import 'package:flutterappwechat/pages/discover/diccover_page.dart';
-import 'package:flutterappwechat/pages/friends_page.dart';
-import 'package:flutterappwechat/pages/mine_page.dart';
+import 'package:flutterappwechat/pages/friends/friends_page.dart';
+import 'package:flutterappwechat/pages/mine/mine_page.dart';
 
 class RootPage extends StatefulWidget {
   @override

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutterappwechat/common.dart';
 import 'package:flutterappwechat/pages/discover/discover_cell.dart';
 
 class DiscoverPage extends StatefulWidget {
-  Color _themColor = Color.fromRGBO(220, 220, 220, 1.0);
+  Color _themColor = WeChatThemeColor;
   @override
   _DiscoverPageState createState() => _DiscoverPageState();
 }
@@ -24,7 +25,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
         title: Text(
           '发现',
         ),
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.grey,
       ),
       body: Container(
         color: widget._themColor, //通过widget访问成员变量

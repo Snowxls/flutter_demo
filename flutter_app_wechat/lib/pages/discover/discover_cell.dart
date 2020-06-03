@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutterappwechat/pages/discover/discover_child_page.dart';
 
-class DiscoverCell extends StatelessWidget {
+class DiscoverCell extends StatefulWidget {
   final String title;
   final String subTitle;
   final String imageName;
@@ -15,18 +15,40 @@ class DiscoverCell extends StatelessWidget {
   });
 
   @override
+  State<StatefulWidget> createState() {
+    return _DiscoverCellState();
+  }
+}
+
+class _DiscoverCellState extends State<DiscoverCell> {
+  Color _currentColor = Colors.white;
+
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
+        setState(() {
+          _currentColor = Colors.white;
+        });
         Navigator.of(context).push(
           MaterialPageRoute(
               builder: (BuildContext context) => DisCoverChildPage(
-                    title: '$title',
+                    title: widget.title,
                   )),
         );
       },
+      onTapDown: (TapDownDetails details) {
+        setState(() {
+          _currentColor = Colors.grey;
+        });
+      },
+      onTapCancel: () {
+        setState(() {
+          _currentColor = Colors.white;
+        });
+      },
       child: Container(
-        color: Colors.white,
+        color: _currentColor,
         height: 54,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -37,13 +59,13 @@ class DiscoverCell extends StatelessWidget {
               child: Row(
                 children: <Widget>[
                   Image(
-                    image: AssetImage(imageName),
+                    image: AssetImage(widget.imageName),
                     width: 20,
                   ),
                   SizedBox(
                     width: 15,
                   ),
-                  Text(title),
+                  Text(widget.title),
                 ],
               ),
             ),
@@ -52,10 +74,10 @@ class DiscoverCell extends StatelessWidget {
               padding: EdgeInsets.all(10),
               child: Row(
                 children: <Widget>[
-                  subTitle != null ? Text(subTitle) : Text(''),
-                  subImageName != null
+                  widget.subTitle != null ? Text(widget.subTitle) : Text(''),
+                  widget.subImageName != null
                       ? Image(
-                          image: AssetImage(subImageName),
+                          image: AssetImage(widget.subImageName),
                           width: 10,
                         )
                       : Container(),
