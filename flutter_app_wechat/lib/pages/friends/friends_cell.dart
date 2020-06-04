@@ -15,6 +15,18 @@ class FriendCell extends StatelessWidget {
     return Column(
       children: <Widget>[
         Container(
+          alignment: Alignment.centerLeft,
+          padding: EdgeInsets.only(left: 10),
+          height: groupTitle != null ? 30 : 0,
+          color: Color.fromRGBO(1, 1, 1, 0),
+          child: groupTitle != null
+              ? Text(
+                  groupTitle,
+                  style: TextStyle(color: Colors.grey),
+                )
+              : null,
+        ), //cell的头
+        Container(
           color: Colors.white,
           child: Row(
             children: <Widget>[
@@ -38,11 +50,19 @@ class FriendCell extends StatelessWidget {
               ), //文字
             ],
           ),
-        ),
+        ), //cell内容
         Container(
           height: 0.5,
           color: WeChatThemeColor,
-        ),
+          child: Row(
+            children: <Widget>[
+              Container(
+                width: 50,
+                color: Colors.white,
+              )
+            ],
+          ),
+        ), //分割线
       ],
     );
   }
