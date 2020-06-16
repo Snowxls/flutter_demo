@@ -17,6 +17,7 @@ class MyApp extends StatelessWidget {
         highlightColor: Color.fromRGBO(1, 0, 0, 0), //长按的颜色
         splashColor: Color.fromRGBO(1, 0, 0, 0), //点击的颜色
         primarySwatch: Colors.blue,
+        cardColor: Color.fromRGBO(1, 1, 1, 0.65),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: RootPage(),

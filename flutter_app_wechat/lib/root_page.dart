@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutterappwechat/pages/chat_page.dart';
+import 'package:flutterappwechat/pages/chat/chat_page.dart';
 import 'package:flutterappwechat/pages/discover/diccover_page.dart';
 import 'package:flutterappwechat/pages/friends/friends_page.dart';
 import 'package:flutterappwechat/pages/mine/mine_page.dart';
@@ -11,12 +11,24 @@ class RootPage extends StatefulWidget {
 
 class _RootPageState extends State<RootPage> {
   int _currentIndex = 0;
+
   List<Widget> _pages = [ChatPage(), FriendsPage(), DiscoverPage(), MinePage()];
+
+  final PageController _controller = PageController(initialPage: 0);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _pages[_currentIndex],
+      body: PageView(
+        onPageChanged: (int index) {
+          //页面滚动时调用
+          _currentIndex = index;
+          setState(() {});
+        },
+        controller: _controller,
+        children: _pages,
+        physics: NeverScrollableScrollPhysics(), //拒绝页面滚动
+      ),
       bottomNavigationBar: BottomNavigationBar(
         selectedFontSize: 12.0, //选中时字体大小
         onTap: (index) {
@@ -24,6 +36,7 @@ class _RootPageState extends State<RootPage> {
             // 刷新UI
             _currentIndex = index;
           });
+          _controller.jumpToPage(index);
         },
         type: BottomNavigationBarType.fixed, //固定布局
         fixedColor: Colors.green,

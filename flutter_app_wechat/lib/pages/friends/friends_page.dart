@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutterappwechat/common.dart';
 import 'package:flutterappwechat/pages/discover/discover_child_page.dart';
 import 'package:flutterappwechat/pages/friends/friends_data.dart';
@@ -11,7 +12,8 @@ class FriendsPage extends StatefulWidget {
   _FriendsPageState createState() => _FriendsPageState();
 }
 
-class _FriendsPageState extends State<FriendsPage> {
+class _FriendsPageState extends State<FriendsPage>
+    with AutomaticKeepAliveClientMixin {
   ScrollController _scrollController; //滚动控制器
   //字典 放item和高度的对应数据
   final Map _groupOffsetMap = {
@@ -20,6 +22,11 @@ class _FriendsPageState extends State<FriendsPage> {
   };
 
   final List<Friends> _listDatas = [];
+
+  @override
+  bool get wantKeepAlive {
+    return true;
+  }
 
   @override
   void initState() {
@@ -98,6 +105,7 @@ class _FriendsPageState extends State<FriendsPage> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: WeChatThemeColor,

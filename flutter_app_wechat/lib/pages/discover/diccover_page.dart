@@ -24,8 +24,9 @@ class _DiscoverPageState extends State<DiscoverPage> {
         elevation: 0.0, //为了安卓使用的属性 底部边栏 设置为0就不出现了
         title: Text(
           '发现',
+          style: TextStyle(color: Colors.black),
         ),
-        backgroundColor: Colors.grey,
+        backgroundColor: WeChatThemeColor,
       ),
       body: Container(
         color: widget._themColor, //通过widget访问成员变量

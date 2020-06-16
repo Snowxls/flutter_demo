@@ -11,7 +11,10 @@ class DisCoverChildPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: WeChatThemeColor,
-        title: Text('$title'),
+        title: Text(
+          '$title',
+          style: TextStyle(color: Colors.black),
+        ),
       ),
       body: Center(
         child: Text('$title'),
