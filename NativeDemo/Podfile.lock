@@ -1,0 +1,28 @@
+PODS:
+  - Flutter (1.0.0)
+  - fluttermodulemixios (0.0.1):
+    - Flutter
+  - FlutterPluginRegistrant (0.0.1):
+    - Flutter
+
+DEPENDENCIES:
+  - Flutter (from `../flutter_module_mixios/.ios/Flutter/engine`)
+  - fluttermodulemixios (from `../flutter_module_mixios/.ios/Flutter`)
+  - FlutterPluginRegistrant (from `../flutter_module_mixios/.ios/Flutter/FlutterPluginRegistrant`)
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: "../flutter_module_mixios/.ios/Flutter/engine"
+  fluttermodulemixios:
+    :path: "../flutter_module_mixios/.ios/Flutter"
+  FlutterPluginRegistrant:
+    :path: "../flutter_module_mixios/.ios/Flutter/FlutterPluginRegistrant"
+
+SPEC CHECKSUMS:
+  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+  fluttermodulemixios: 5d7b3d63190a60bbc7b388f71c489b62acd36dff
+  FlutterPluginRegistrant: d59dd07dd90e9c6430996073575a5bd1ea19677e
+
+PODFILE CHECKSUM: 4629fb7df2ff708a12c7af4ed2a6ddcc1669b330
+
+COCOAPODS: 1.9.3

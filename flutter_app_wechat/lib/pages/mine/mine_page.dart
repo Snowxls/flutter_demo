@@ -1,5 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutterappwechat/pages/discover/discover_cell.dart';
+import 'package:image_picker/image_picker.dart';
 
 class MinePage extends StatefulWidget {
   @override
@@ -7,6 +11,37 @@ class MinePage extends StatefulWidget {
 }
 
 class _MinePageState extends State<MinePage> {
+  File _avatorFile;
+
+  //建立channel
+  MethodChannel _methodChannel =
+      MethodChannel('mine_page'); //命名可以使用bundleId或页面名称
+
+  //使用三方插件交互 不需要在原生代码中写代码
+  void _pickImage() async {
+    PickedFile file = await ImagePicker().getImage(source: ImageSource.gallery);
+    setState(() {
+      _avatorFile = File(file.path);
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    //Channel 通讯相关
+    _methodChannel.setMethodCallHandler((call) {
+      if (call.method == 'imagePath') {
+        String imagePath =
+            call.arguments.toString().substring(7); //移除ios路径中前7个字符 file://
+        setState(() {
+          _avatorFile = File(imagePath);
+        });
+      }
+      return null;
+    });
+  }
+
   var _lineRow = Row(
     children: <Widget>[
       Container(width: 50, height: 0.5, color: Colors.white),
@@ -31,20 +66,31 @@ class _MinePageState extends State<MinePage> {
 //          color: Colors.red,
           child: Row(
             children: <Widget>[
-              Container(
-                width: 50,
-                height: 50,
-                // 给图片切圆角 需要在装饰器里设置图片
-                decoration: BoxDecoration(
-                  color: Colors.blue,
-                  //设置圆角、阴影等效果
-                  borderRadius: BorderRadius.circular(10),
-                  image: DecorationImage(
-                    image: AssetImage('images/Snow.jpeg'),
-                    fit: BoxFit.cover, //填充方式
+              GestureDetector(
+                onTap: () {
+                  print('切换头像');
+                  //使用Channel实现原生交互
+                  //_methodChannel.invokeMapMethod('picture'); // 发送一个 'picture' 消息
+
+                  _pickImage(); //三方库调用
+                },
+                child: Container(
+                  width: 50,
+                  height: 50,
+                  // 给图片切圆角 需要在装饰器里设置图片
+                  decoration: BoxDecoration(
+                    color: Colors.blue,
+                    //设置圆角、阴影等效果
+                    borderRadius: BorderRadius.circular(10),
+                    image: DecorationImage(
+                      image: _avatorFile == null
+                          ? AssetImage('images/Snow.jpeg')
+                          : FileImage(_avatorFile),
+                      fit: BoxFit.cover, //填充方式
+                    ),
                   ),
-                ),
-              ), //头像
+                ), //头像
+              ),
               Container(
                 margin: EdgeInsets.only(
                   top: 15,
